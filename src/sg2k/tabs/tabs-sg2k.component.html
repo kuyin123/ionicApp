@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>SG2K</ion-title>
+    <ion-buttons end padding-right>
+      <button ion-button icon-only (click)="onSearch()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="onScan()">
+        <ion-icon name="qr-scanner"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-tabs  selectedIndex="mySelectedIndex">
+  <ion-tab [root]="tab1Root" tabTitle="概览" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="报警" tabIcon="information-circle"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="设置" tabIcon="contacts"></ion-tab>
+</ion-tabs>

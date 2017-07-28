@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+    </ion-title>
+  </ion-navbar>
+  <ion-searchbar
+    #searchBar
+    debounce="100"
+    placeholder="输入搜索的机泵位号/名称"
+    (ionInput)="getItems($event)"></ion-searchbar>
+</ion-header>
+<ion-content>
+  <ion-select [(ngModel)]="type" interface="action-sheet" margin-left="8px" style="border:1px solid black;">
+    <ion-option value="0">全部报警类型</ion-option>
+    <ion-option value="1">C区</ion-option>
+    <ion-option value="2">D区</ion-option>
+  </ion-select>
+  <ion-list inset>
+    <button ion-item icon-start *ngFor="let item of alarmItems" (click)="itemSelected(item)">
+      <p style="position: relative">
+        <span>{{item.pumpName}}</span>
+        <span style="position: absolute; right: 0px; top: 6px; font-size: small">{{item.datatime}}</span>
+      </p>
+
+      <p>
+        {{item.dsName}}
+        <span *ngIf="item.alarmDirection === 3">
+          温度 ≥ {{ item.alarmValue }}℃
+        </span>
+        <span *ngIf="item.alarmDirection === 0">
+          X方向 ≥ {{ item.alarmValue }}<span *ngIf="item.alarmUnits === 0">mm/ss</span><span
+          v-else="item.alarmUnits === 1">mm/s</span>
+        </span>
+        <span *ngIf="item.alarmDirection === 1">
+          Y方向 ≥ {{ item.alarmValue }}<span *ngIf="item.alarmUnits === 0">mm/ss</span><span
+          *ngIf="item.alarmUnits === 1">mm/s</span>
+        </span>
+        <span *ngIf="item.alarmDirection === 2">
+          Z方向 ≥ {{ item.alarmValue }}<span v-if="item.alarmUnits === 0">mm/ss</span><span
+          *ngIf="item.alarmUnits === 1">mm/s</span>
+        </span>
+
+        <span *ngIf="item.alarmType === 0" padding-left="">
+          C区
+        </span>
+        <span *ngIf="item.alarmType === 1">
+          D区
+        </span>
+      </p>
+    </button>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div>
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="0">
+        实时数据
+      </ion-segment-button>
+      <ion-segment-button value="1">
+        状态变化
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="pet">
+    <div *ngSwitchCase="0">
+      <!--实时机泵状态统计-->
+      <div class="title">实时机泵状态统计</div>
+      <echarts-ng2  #relChart [option]="relOpt"></echarts-ng2>
+      <ion-grid>
+        <ion-row *ngFor="let pump of relData">
+          <ion-col col-4>{{pump.name}}</ion-col>
+          <ion-col col-4>{{pump.value}}</ion-col>
+          <ion-col col-4>{{pump.proportion}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div *ngSwitchCase="1">
+      <!--历史机泵状态变化统计-->
+      <div class="title">历史机泵状态变化统计</div>
+      <!--时间选择-->
+      <ion-segment [(ngModel)]="timesel">
+        <ion-segment-button value="1">
+          天
+        </ion-segment-button>
+        <ion-segment-button value="2">
+          周
+        </ion-segment-button>
+        <ion-segment-button value="3">
+          月
+        </ion-segment-button>
+        <ion-segment-button value="4">
+          年
+        </ion-segment-button>
+        <ion-segment-button value="0">
+          自定义
+        </ion-segment-button>
+      </ion-segment>
+      <div style="text-align: center">
+         {{preDate}}—{{curDate}}
+      </div>
+      <echarts-ng2  #relChart [option]="hisOpt"></echarts-ng2>
+      <ion-grid>
+        <ion-row *ngFor="let pump of hisData">
+          <ion-col col-4>{{pump.name}}</ion-col>
+          <ion-col col-4>{{pump.value}}</ion-col>
+          <ion-col col-4>{{pump.proportion}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+  <!--<echarts-ng2  #relChart [option]="relOpt"></echarts-ng2>-->
+</ion-content>

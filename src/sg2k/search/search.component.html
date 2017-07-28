@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      机泵列表
+    </ion-title>
+  </ion-navbar>
+  <ion-searchbar
+    #searchBar
+    debounce="500"
+    placeholder="输入搜索的机泵位号/名称"
+    (ionInput)="getItems(searchBar)"></ion-searchbar>
+</ion-header>
+
+
+<ion-content>
+  <!--<ion-searchbar-->
+    <!--#searchBar-->
+    <!--debounce="500"-->
+    <!--placeholder="输入搜索的机泵位号/名称"-->
+    <!--(ionInput)="getItems(searchBar)"></ion-searchbar>-->
+  <ion-list>
+    <ion-item *ngFor="let item of pumpItems">
+      {{ item.pumpName }}
+    </ion-item>
+  </ion-list>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+     <ion-refresher-content
+       pullingIcon="arrow-dropdown"
+       pullingText="Pull to refresh"
+       refreshingSpinner="circles"
+       refreshingText="Refreshing...">
+     </ion-refresher-content>
+   </ion-refresher>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
