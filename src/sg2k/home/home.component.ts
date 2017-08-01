@@ -25,6 +25,10 @@ export class HomeComponent implements OnInit{
   relData = [];//实时数据
   hisData = [];//历史数据
 
+  //title:string = '实时机泵状态统计'
+  get title():string{
+    return this.pet=='0'?'实时机泵状态统计':'历史机泵状态变化统计'
+  }
   /*
   * 选择时间类型
   * */
