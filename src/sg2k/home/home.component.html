@@ -50,8 +50,24 @@
           自定义
         </ion-segment-button>
       </ion-segment>
-      <div text-center margin-vertical>
-        {{preDate}}—{{curDate}}
+      <div text-center>
+        <p *ngIf="timesel != 0">{{preDate}}—{{curDate}}</p>
+        <p *ngIf="timesel == 0">
+          <ion-grid no-padding>
+            <ion-row>
+              <ion-col col-4 align-self-center>
+                <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="preDate" cancelText="取消" doneText="完成" [max]="maxDay">{{maxDay}}</ion-datetime>
+              </ion-col>
+              <ion-col col-1 align-self-center>-</ion-col>
+              <ion-col col-4 align-self-center>
+                <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="curDate" cancelText="取消" doneText="完成" [max]="maxDay"></ion-datetime>
+              </ion-col>
+              <ion-col col-3 align-self-center>
+                <button ion-button small block (click)="customDate()">确定</button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </p>
       </div>
       <echarts-ng2 #relChart [option]="hisOpt"></echarts-ng2>
       <ion-grid>

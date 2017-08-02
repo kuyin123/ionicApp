@@ -22,10 +22,12 @@ export class HomeComponent implements OnInit{
   colorForRel = ['#F24949', '#f7ba2a', '#ABE235', '#11b95c', '#dcdcdc'];//实时机泵饼图分块颜色
   colorForHis = ['#F25589', '#D321ff', '#3CA0C6'];//历史机泵饼图分块颜色
   colorNoData = ['#dcdcdc'];//无数据饼图颜色
-  relData = [];//实时数据
-  hisData = [];//历史数据
+  relData:any[] = [];//实时数据
+  hisData:any[] = [];//历史数据
 
-  //title:string = '实时机泵状态统计'
+  maxDay:string = dateHandler.dateFormat(new Date(),'yyyy-MM-dd');
+
+  //根据实时数据和状态变化，动态改变显示标题
   get title():string{
     return this.pet=='0'?'实时机泵状态统计':'历史机泵状态变化统计'
   }
@@ -54,9 +56,11 @@ export class HomeComponent implements OnInit{
         preDate = dateHandler.prevDay(curDate);
         break;
     }
-    this.countHisPumpStatus(preDate,curDate);
     this.preDate = dateHandler.dateFormat(preDate,'yyyy-MM-dd');
     this.curDate = dateHandler.dateFormat(curDate,'yyyy-MM-dd');
+    if(timesel != '0'){
+    this.countHisPumpStatus(preDate,curDate);
+    }
   };
 
   get timesel(){
@@ -64,10 +68,10 @@ export class HomeComponent implements OnInit{
   };
 
   ngOnInit(){
+    
     this.timesel = "1";//默认选择前一天
     this.countRTPumpStatus();//初始化请求实时机泵
   };
-
   /*
   * 实时机泵统计
   * */
@@ -110,6 +114,8 @@ export class HomeComponent implements OnInit{
     });
   }
 
-
+  customDate():void{
+    this.countHisPumpStatus(this.preDate,this.curDate)
+  }
 
 }
