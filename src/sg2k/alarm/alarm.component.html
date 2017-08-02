@@ -7,46 +7,90 @@
     #searchBar
     debounce="100"
     placeholder="输入搜索的机泵位号/名称"
-    (ionInput)="getItems($event)"></ion-searchbar>
+    (ionInput)="getItems($event)">
+  </ion-searchbar>
 </ion-header>
 <ion-content>
-  <ion-select [(ngModel)]="type" interface="action-sheet" margin-left="8px" style="border:1px solid black;">
-    <ion-option value="0">全部报警类型</ion-option>
-    <ion-option value="1">C区</ion-option>
-    <ion-option value="2">D区</ion-option>
+  <ion-select
+    (ionChange)="onSelectChange($event)"
+    [(ngModel)]="type"
+    interface="popover">
+    <ion-option value="-1">全部报警类型</ion-option>
+    <ion-option value="0">C区</ion-option>
+    <ion-option value="1">D区</ion-option>
   </ion-select>
-  <ion-list inset>
-    <button ion-item icon-start *ngFor="let item of alarmItems" (click)="itemSelected(item)">
-      <p style="position: relative">
-        <span>{{item.pumpName}}</span>
-        <span style="position: absolute; right: 0px; top: 6px; font-size: small">{{item.datatime}}</span>
-      </p>
-
+  <ion-list>
+    <button
+      ion-item
+      detail-none
+      icon-end
+      *ngFor="let item of alarmItems"
+      (click)="itemSelected(item)">
+      <!-- 第一行 名称和日期时间 -->
       <p>
-        {{item.dsName}}
-        <span *ngIf="item.alarmDirection === 3">
-          温度 ≥ {{ item.alarmValue }}℃
-        </span>
-        <span *ngIf="item.alarmDirection === 0">
-          X方向 ≥ {{ item.alarmValue }}<span *ngIf="item.alarmUnits === 0">mm/ss</span><span
-          v-else="item.alarmUnits === 1">mm/s</span>
-        </span>
-        <span *ngIf="item.alarmDirection === 1">
-          Y方向 ≥ {{ item.alarmValue }}<span *ngIf="item.alarmUnits === 0">mm/ss</span><span
-          *ngIf="item.alarmUnits === 1">mm/s</span>
-        </span>
-        <span *ngIf="item.alarmDirection === 2">
-          Z方向 ≥ {{ item.alarmValue }}<span v-if="item.alarmUnits === 0">mm/ss</span><span
-          *ngIf="item.alarmUnits === 1">mm/s</span>
-        </span>
-
-        <span *ngIf="item.alarmType === 0" padding-left="">
-          C区
-        </span>
-        <span *ngIf="item.alarmType === 1">
-          D区
+        <span>{{item.pumpName}}</span>
+        <span>
+          {{item.datatime}}
         </span>
       </p>
+      <!-- 第二行 测点 报警值 和 区域 -->
+      <p>
+        <!-- 使用 ion-grid 对区域进行划分 -->
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4>
+              <!-- 测点名称 -->
+              {{item.dsName}}
+            </ion-col>
+            <ion-col col-6>
+              <!-- 测点监测的异常报警值 温度/方向 -->
+              <span *ngIf="item.alarmDirection === 3">
+                温度 ≥ {{ item.alarmValue }}℃
+              </span>
+              <span *ngIf="item.alarmDirection === 0">
+                X方向 ≥ {{ item.alarmValue }}
+                <span *ngIf="item.alarmUnits === 0">mm/ss</span>
+                <span *ngIf="item.alarmUnits === 1">mm/s</span>
+                <span *ngIf="item.alarmUnits === 2">mm/s</span>
+              </span>
+              <span *ngIf="item.alarmDirection === 1">
+                Y方向 ≥ {{ item.alarmValue }}
+                <span *ngIf="item.alarmUnits === 0">mm/ss</span>
+                <span *ngIf="item.alarmUnits === 1">mm/s</span>
+                <span *ngIf="item.alarmUnits === 2">mm/s</span>
+              </span>
+              <span *ngIf="item.alarmDirection === 2">
+                Z方向 ≥ {{ item.alarmValue }}
+                <span *ngIf="item.alarmUnits === 0">mm/ss</span>
+                <span *ngIf="item.alarmUnits === 1">mm/s</span>
+                <span *ngIf="item.alarmUnits === 2">mm/s</span>
+              </span>
+            </ion-col>
+            <ion-col col-2>
+              <!-- 报警值所在的区域 -->
+              <span
+                style="color: #FF9800;"
+                *ngIf="item.alarmType === 0">
+                C区
+              </span>
+              <span
+                style="color: #F20513;"
+                *ngIf="item.alarmType === 1">
+                D区
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </p>
+      <!-- 最右边的箭头 -->
+      <ion-icon name='arrow-forward'></ion-icon>
     </button>
   </ion-list>
+  <!-- 下拉刷新 -->
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="正在加载数据...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

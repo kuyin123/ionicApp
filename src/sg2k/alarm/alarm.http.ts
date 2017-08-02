@@ -1,11 +1,13 @@
 import {Injectable} from "@angular/core";
-import {Response,Http} from "@angular/http";
+import {Response, Http} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {HttpService} from "../../providers/HttpService"
 
 @Injectable()
 export class AlarmHttp {
-  constructor(public httpService:HttpService){}
+  constructor(public httpService: HttpService) {
+  }
+
   params = {
     q: null,
     currentPage: 1,
@@ -14,11 +16,15 @@ export class AlarmHttp {
     orderbyField: '',
     status: -1
   };
-  //实时机泵状态统计接口
-  private alarmListURL:string = 'sg2k/LogShow/pumpAlarm.do';
+  // 机泵报警列表接口
+  private alarmListURL: string = 'sg2k/LogShow/pumpAlarm.do';
 
-  queryPumpAlarmList(){
-    return this.httpService.post(this.alarmListURL,this.params).map((res: Response) => res.json());
+  queryPumpAlarmList() {
+    return this.httpService
+      .post(
+        this.alarmListURL,
+        this.params
+      ).map((res: Response) => res.json());
   };
 
 }

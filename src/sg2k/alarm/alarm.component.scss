@@ -1,3 +1,49 @@
 page-home {
+  // 下拉框
+  ion-select {
+    margin: 1rem 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  // 列表信息
+  ion-list {
+    // 每行都可以点击的item, 被button包裹
+    button {
+      ion-label {
+        padding-right: 1.5rem;
+        position: relative;
+        // 第一行
+        p:nth-of-type(1) {
+          position: relative;
+          // 机泵名称
+          span:nth-of-type(1) {
+            font-size: 16px;
+          }
+          // 对应的日期
+          span:nth-of-type(2) {
+            font-size: 1.4rem;
+            line-height: 1.6rem;
+            position: absolute;
+            top: .6rem;
+            right: 0;
+          }
+        }
+        // 第二行文字
+        p:nth-of-type(2) {
+          font-size: 1.8rem;
+          ion-grid ion-row ion-col {
+
+          }
+        }
+      }
+      // 每行最右边的箭头
+      ion-icon {
+        position: absolute;
+        top: 2rem;
+        right: 0;
+      }
+    }
+  }
 }
+
 
