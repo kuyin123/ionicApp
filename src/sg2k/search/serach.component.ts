@@ -17,11 +17,15 @@ export class SearchComponent implements OnInit {
     private searchHttp: SearchHttp,
     private navCtrl: NavController
   ) {
+
+
+  }
+  ionViewDidEnter() {
+    // debugger;
     setTimeout(() => {
       //Keyboard.show();
       this.searchbar.setFocus();
-    }, 500);
-
+    }, 50);
   }
 
   ngOnInit() {
