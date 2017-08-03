@@ -5,6 +5,9 @@
     </ion-title>
   </ion-navbar>
   <ion-searchbar
+    showCancelButton=true
+    cancelButtonText="取消"
+    (ionCancel)="onCancel($event)"
     #searchBar
     debounce="500"
     placeholder="输入搜索的机泵位号/名称"

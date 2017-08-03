@@ -1,16 +1,33 @@
+<!--
+  报警的第一个界面: 搜索/下拉框/列表/上拉刷新/下拉加载分页
+-->
 <ion-header>
   <ion-navbar>
     <ion-title>
     </ion-title>
   </ion-navbar>
-  <ion-searchbar
-    #searchBar
-    debounce="100"
-    placeholder="输入搜索的机泵位号/名称"
-    (ionInput)="getItems($event)">
-  </ion-searchbar>
+  <!--<ion-nav>-->
+    <ion-searchbar
+      [navPush]="pushPage"
+      [(ngModel)]="searchVal"
+      #searchBar
+      debounce="1000"
+      placeholder="机泵位号 / 名称"
+      (ionInput)="filterItems($event)">
+    </ion-searchbar>
+  <!--</ion-nav>-->
+
 </ion-header>
 <ion-content>
+  <!-- 上拉刷新 refresher -->
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="下拉刷新"
+      refreshingText="加载中">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!-- 下拉框选择 -->
   <ion-select
     (ionChange)="onSelectChange($event)"
     [(ngModel)]="type"
@@ -19,6 +36,8 @@
     <ion-option value="0">C区</ion-option>
     <ion-option value="1">D区</ion-option>
   </ion-select>
+
+  <!-- 报警的数据列表 -->
   <ion-list>
     <button
       ion-item
@@ -26,14 +45,14 @@
       icon-end
       *ngFor="let item of alarmItems"
       (click)="itemSelected(item)">
-      <!-- 第一行 名称和日期时间 -->
+      <!-- item 的第一行 名称和日期时间 -->
       <p>
-        <span>{{item.pumpName}}</span>
+        <span>{{ item.pumpName }}</span>
         <span>
-          {{item.datatime}}
+          {{ item.datatime }}
         </span>
       </p>
-      <!-- 第二行 测点 报警值 和 区域 -->
+      <!-- item 的第二行 测点 报警值 和 区域 -->
       <p>
         <!-- 使用 ion-grid 对区域进行划分 -->
         <ion-grid>
@@ -86,8 +105,14 @@
       <ion-icon name='arrow-forward'></ion-icon>
     </button>
   </ion-list>
+  <div
+    *ngIf="ifBottom"
+    style="text-align: center; color: red;">
+    <span>------ 我是有底线的 ------</span>
+  </div>
   <!-- 下拉刷新 -->
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll
+    (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
       loadingText="正在加载数据...">
