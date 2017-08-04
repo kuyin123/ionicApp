@@ -1,35 +1,33 @@
 /**
  * Created by yanxiaojun617@163.com on 12-27.
  */
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   Http, Response, Headers, RequestOptions, URLSearchParams, RequestOptionsArgs, RequestMethod
 } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {Observable, TimeoutError} from "rxjs";
-import {Utils} from "./Utils";
-import {GlobalData} from "./GlobalData";
-import {NativeService} from "./NativeService";
-import {APP_SERVE_URL, REQUEST_TIMEOUT} from "./Constants";
+import { Observable, TimeoutError } from "rxjs";
+import { Utils } from "./Utils";
+import { GlobalData } from "./GlobalData";
+import { NativeService } from "./NativeService";
+import { APP_SERVE_URL, REQUEST_TIMEOUT } from "./Constants";
 
 @Injectable()
 export class HttpService {
 
   constructor(public http: Http,
-              private globalData: GlobalData,
-              private nativeService: NativeService) {
+    private globalData: GlobalData,
+    private nativeService: NativeService) {
   }
 
   public request(url: string, options: RequestOptionsArgs): Observable<Response> {
     url = Utils.formatUrl(url.startsWith('http') ? url : APP_SERVE_URL + url);
     this.optionsAddToken(options);
     return Observable.create(observer => {
-      // this.nativeService.showLoading();
-      console.log('%c 请求前 %c', 'color:blue', '', 'url', url, 'options', options);
+      this.nativeService.showLoading();
       this.http.request(url, options).timeout(REQUEST_TIMEOUT).subscribe(res => {
-        // this.nativeService.hideLoading();
-        console.log('%c 请求成功 %c', 'color:green', '', 'url', url, 'options', options, 'res', res);
-        observer.next(res);
+        this.nativeService.hideLoading();
+        observer.next(res);//执行自定义的回调函数
       }, err => {
         this.requestFailed(url, options, err);//处理请求失败
         observer.error(err);
@@ -52,7 +50,7 @@ export class HttpService {
     //      'Content-Type': 'application/json; charset=UTF-8'
     //   })
     // }));
-    return this.postFormData(url,body);
+    return this.postFormData(url, body);
   }
 
   public postFormData(url: string, paramMap: any = null): Observable<Response> {
