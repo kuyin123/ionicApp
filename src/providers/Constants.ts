@@ -3,9 +3,8 @@ export const IS_DEBUG = true;//是否开发(调试)模式
 export const FUNDEBUG = true;//是否启用fundebug日志监控
 
 export const FILE_SERVE_URL = 'http://88.128.18.144:3333/';
-//export const APP_SERVE_URL = 'http://10.0.99.25:80/';
+// export const APP_SERVE_URL = 'http://10.0.99.25:80/';
 export const APP_SERVE_URL = 'http://101.201.55.7:80/'; // aliyun
-
 
 export const DEFAULT_AVATAR = './assets/img/avatar.png';//用户默认头像
 export const PAGE_SIZE = 5;//默认分页大小

@@ -48,10 +48,6 @@ export class AlarmComponent implements OnInit {
   //   this.alarmHttp.params.q = val;
   //   this.alarmHttp.queryPumpAlarmList();
   }
-  // 点击搜索框的取消
-  onCancel(evt: any) {
-    // debugger
-  }
 
   // 上拉加载
   doInfinite(infiniteScroll) {
