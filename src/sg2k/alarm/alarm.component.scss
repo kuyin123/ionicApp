@@ -1,9 +1,37 @@
 page-home {
-  // 下拉框
-  ion-select {
-    margin: 1rem 1.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  ion-grid.grid { // ion-grid 和 ion-col 默认有 padding: 5px
+    padding: 0;
+    ion-col {
+      padding: 0;
+      ion-select {
+        max-width: 90%;
+      }
+    }
+  }
+  // 头部
+  ion-header {
+    // 使用grid布局的搜索框和下拉框
+    ion-grid.grid {
+      ion-col:nth-of-type(1) {
+        .searchbar-ios {
+          //background-color: #fff;
+        }
+      }
+      ion-col:nth-of-type(2) {
+        background-color: #ccc;
+      }
+      ion-select {
+        width: 100px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        margin-right: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
   // 列表信息
   ion-list {
@@ -24,7 +52,7 @@ page-home {
             font-size: 1.4rem;
             line-height: 1.6rem;
             position: absolute;
-            top: .2rem;
+            top: .3rem;
             right: 0;
           }
         }

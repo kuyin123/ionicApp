@@ -6,16 +6,32 @@
     <ion-title>
     </ion-title>
   </ion-navbar>
-  <!--<ion-nav>-->
-    <ion-searchbar
-      [navPush]="pushPage"
-      [(ngModel)]="searchVal"
-      #searchBar
-      debounce="1000"
-      placeholder="机泵位号 / 名称"
-      (ionInput)="filterItems($event)">
-    </ion-searchbar>
-  <!--</ion-nav>-->
+  <ion-grid>
+    <ion-row>
+      <ion-col col-9>
+        <!-- 搜索框 -->
+        <ion-searchbar
+          [navPush]="pushPage"
+          [(ngModel)]="searchVal"
+          #searchBar
+          debounce="1000"
+          placeholder="机泵位号 / 名称"
+          (ionInput)="filterItems($event)">
+        </ion-searchbar>
+      </ion-col>
+      <ion-col col-3>
+        <!-- 下拉框选择 -->
+        <ion-select
+          (ionChange)="onSelectChange($event)"
+          [(ngModel)]="type"
+          interface="popover">
+          <ion-option value="-1">全部报警类型</ion-option>
+          <ion-option value="0">C区</ion-option>
+          <ion-option value="1">D区</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-header>
 <ion-content>
@@ -26,16 +42,6 @@
       refreshingText="加载中">
     </ion-refresher-content>
   </ion-refresher>
-
-  <!-- 下拉框选择 -->
-  <ion-select
-    (ionChange)="onSelectChange($event)"
-    [(ngModel)]="type"
-    interface="popover">
-    <ion-option value="-1">全部报警类型</ion-option>
-    <ion-option value="0">C区</ion-option>
-    <ion-option value="1">D区</ion-option>
-  </ion-select>
 
   <!-- 报警的数据列表 -->
   <ion-list>
@@ -90,12 +96,12 @@
               <span
                 style="color: #FF9800;"
                 *ngIf="item.alarmType === 0">
-                C区
+                →C区
               </span>
               <span
                 style="color: #F20513;"
                 *ngIf="item.alarmType === 1">
-                D区
+                →D区
               </span>
             </ion-col>
           </ion-row>

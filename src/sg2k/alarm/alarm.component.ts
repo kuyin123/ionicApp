@@ -44,9 +44,9 @@ export class AlarmComponent implements OnInit {
 
   // 页面内搜索功能
   filterItems(evt: any) {
-    let val = this.searchVal;
-    this.alarmHttp.params.q = val;
-    this.alarmHttp.queryPumpAlarmList();
+  //   let val = this.searchVal;
+  //   this.alarmHttp.params.q = val;
+  //   this.alarmHttp.queryPumpAlarmList();
   }
   // 点击搜索框的取消
   onCancel(evt: any) {
