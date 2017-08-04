@@ -13,9 +13,6 @@ page-home {
     // 使用grid布局的搜索框和下拉框
     ion-grid.grid {
       ion-col:nth-of-type(1) {
-        .searchbar-ios {
-          //background-color: #fff;
-        }
       }
       ion-col:nth-of-type(2) {
         background-color: #ccc;
