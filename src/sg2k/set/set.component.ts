@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'page-home',
+  selector: 'page-set',
   templateUrl: './set.component.html'
 })
 export class SetComponent {
 
   constructor() {
   }
+
 }
