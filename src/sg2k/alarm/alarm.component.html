@@ -12,11 +12,9 @@
         <!-- 搜索框 -->
         <ion-searchbar
           [navPush]="pushPage"
-          [(ngModel)]="searchVal"
           #searchBar
           debounce="1000"
-          placeholder="机泵位号 / 名称"
-          (ionInput)="filterItems($event)">
+          placeholder="机泵位号 / 名称">
         </ion-searchbar>
       </ion-col>
       <ion-col col-3>

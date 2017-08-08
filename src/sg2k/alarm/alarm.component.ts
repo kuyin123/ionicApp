@@ -1,11 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+/*
+* 报警页面的业务逻辑
+* by q1cha0
+* */
+import {Component, OnInit} from '@angular/core'
 import {NavController} from "ionic-angular"
 
 import {AlarmHttp} from './alarm.http'
 import {SearchComponent} from "../search/serach.component"
 
 @Component({
-  selector: 'page-home',
+  selector: 'page-alarm',
   templateUrl: './alarm.component.html'
 })
 export class AlarmComponent implements OnInit {
@@ -15,7 +19,6 @@ export class AlarmComponent implements OnInit {
   curPage: number = 1; // 记录当前页码
   totalPage: number = 0; // 总页数
   ifBottom:boolean = false; // 当前页是否是最后一页
-  searchVal: string = ''; // 页面内搜索值
   pushPage: any; // 通过属性绑定导航
 
   constructor(
@@ -29,7 +32,7 @@ export class AlarmComponent implements OnInit {
     this.queryPumpAlarmList();
   };
 
-  // 点击搜索框的时候, 打开搜索页面
+  // 点击输入框跳转到搜索页面的另一种方法
   openSearchPage() {
     this.navCtrl.push(SearchComponent);
   }
@@ -40,13 +43,6 @@ export class AlarmComponent implements OnInit {
     this.alarmHttp.params.currentPage = this.curPage;
     this.alarmHttp.params.status = selectedValue;
     this.queryPumpAlarmList();
-  }
-
-  // 页面内搜索功能
-  filterItems(evt: any) {
-  //   let val = this.searchVal;
-  //   this.alarmHttp.params.q = val;
-  //   this.alarmHttp.queryPumpAlarmList();
   }
 
   // 上拉加载

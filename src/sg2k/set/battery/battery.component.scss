@@ -1,0 +1,19 @@
+/*
+  电量统计页面的样式
+  by q1cha0
+*/
+page-battery {
+  ion-content {
+    ion-item {
+      ion-label {
+        div:nth-of-type(1) {
+          margin-bottom: 1rem;
+        }
+        div:nth-of-type(2) {
+          font-size: 1.4rem;
+          color: #ccc;
+        }
+      }
+    }
+  }
+}
