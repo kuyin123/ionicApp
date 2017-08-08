@@ -4,9 +4,11 @@ import {HomeComponent} from './home.component';
 import { EchartsNg2Module } from 'echarts-ng2';
 import { HomeHttp } from './home.http'
 
+import {GetTypePipe} from './get-type.pipe'
+
 @NgModule({
   imports: [IonicModule,EchartsNg2Module],
-  declarations: [HomeComponent],
+  declarations: [HomeComponent,GetTypePipe],
   entryComponents: [HomeComponent],
   providers: [HomeHttp],
   exports: [IonicModule]
