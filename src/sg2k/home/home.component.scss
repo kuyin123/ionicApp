@@ -1,13 +1,40 @@
 home-cmp {
-  .title{
+  .title {
     //text-align: center;
-    font-size: larger;
-    font-weight: bold;
+    font-size: larger; //font-weight: bold;
     //margin-top: 10px;
   }
 }
 
-ion-datetime{
-	border:1px solid color($colors, primary);
+ion-datetime {
+  border: 1px solid color($colors, primary);
 }
 
+.type {
+  span {
+    display: inline-block;
+    //border-radius: 100%;
+    position: relative;
+    //overflow: hidden;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      padding-top: 100%;
+      transform: translate(-50%, -50%);
+      border-radius: 100%;
+    }
+  }
+  $typeColor:(good:yellow, normal:green, accept:blue, disallow:red, outline:gray);
+
+  @each $type,
+  $color in $typeColor {
+    .#{$type} {
+      &:after {
+        background:#{$color}
+      }
+    }
+  }
+}

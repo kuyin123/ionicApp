@@ -5,8 +5,11 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <div>
-    <ion-segment [(ngModel)]="pet">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <section>
+    <ion-segment [(ngModel)]="pet" (ionChange)="segmentChanged($event)">
       <ion-segment-button value="0">
         实时数据
       </ion-segment-button>
@@ -14,26 +17,11 @@
         状态变化
       </ion-segment-button>
     </ion-segment>
-  </div>
-  <div [ngSwitch]="pet">
-    <div class="title" text-center margin-vertical>{{title}}</div>
-    <div *ngSwitchCase="0">
-      <!--实时机泵状态统计-->
-      <!-- <div class="title" text-center margin-vertical>实时机泵状态统计</div> -->
-      <echarts-ng2 #relChart [option]="relOpt"></echarts-ng2>
-      <ion-grid>
-        <ion-row *ngFor="let pump of relData">
-          <ion-col col-4>{{pump.name}}</ion-col>
-          <ion-col col-4>{{pump.value}}</ion-col>
-          <ion-col col-4>{{pump.proportion}}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-    <div *ngSwitchCase="1">
-      <!--历史机泵状态变化统计-->
-      <!-- <div class="title" text-center margin-vertical>历史机泵状态变化统计</div> -->
-      <!--时间选择-->
-      <ion-segment [(ngModel)]="timesel">
+  </section>
+  <section>
+    <h3 class="title" text-center margin-vertical>{{title}}</h3>
+    <div *ngIf="pet == 1">
+      <ion-segment [(ngModel)]="timesel" (ionChange)="userSelectDate($event)">
         <ion-segment-button value="1">
           天
         </ion-segment-button>
@@ -50,17 +38,17 @@
           自定义
         </ion-segment-button>
       </ion-segment>
-      <div text-center>
+      <!-- <div text-center>
         <p *ngIf="timesel != 0">{{preDate}}—{{curDate}}</p>
         <p *ngIf="timesel == 0">
           <ion-grid no-padding>
             <ion-row>
               <ion-col col-4 align-self-center>
-                <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="preDate" cancelText="取消" doneText="完成" [max]="maxDay">{{maxDay}}</ion-datetime>
+                <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="preDate" cancelText="取消" doneText="完成" [max]="maxDate"></ion-datetime>
               </ion-col>
               <ion-col col-1 align-self-center>-</ion-col>
               <ion-col col-4 align-self-center>
-                <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="curDate" cancelText="取消" doneText="完成" [max]="maxDay"></ion-datetime>
+                <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="curDate" cancelText="取消" doneText="完成" [max]="maxDate"></ion-datetime>
               </ion-col>
               <ion-col col-3 align-self-center>
                 <button ion-button small block (click)="customDate()">确定</button>
@@ -68,16 +56,15 @@
             </ion-row>
           </ion-grid>
         </p>
-      </div>
-      <echarts-ng2 #relChart [option]="hisOpt"></echarts-ng2>
-      <ion-grid>
-        <ion-row *ngFor="let pump of hisData">
-          <ion-col col-4>{{pump.name}}</ion-col>
-          <ion-col col-4>{{pump.value}}</ion-col>
-          <ion-col col-4>{{pump.proportion}}</ion-col>
-        </ion-row>
-      </ion-grid>
+      </div> -->
     </div>
-  </div>
-  <!--<echarts-ng2  #relChart [option]="relOpt"></echarts-ng2>-->
+    <echarts-ng2 #pieCharts [option]="pieData"></echarts-ng2>
+    <ion-grid>
+      <ion-row *ngFor="let pump of showData">
+        <ion-col col-4 class="type"><span [class]="pump.type | getType">&#12288;</span><span>&nbsp;{{pump.name}}</span></ion-col>
+        <ion-col col-4 text-center><span>{{pump.value}}</span></ion-col>
+        <ion-col col-4 text-center>{{pump.proportion}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
 </ion-content>
