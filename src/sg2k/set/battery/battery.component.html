@@ -34,27 +34,23 @@
         <!-- 电池外边框 -->
         <div
           [style.borderColor]="item.battery | batteryPipe"
-          id="battery_wrapper"
-          #batteryWrapper>
+          id="battery_wrapper">
           <!-- 电池右边的数字信息 -->
           <span
             [style.color]="item.battery | batteryPipe"
-            class="battery_info"
-            #batteryInfo>
-            {{item.battery}}{{item.battery === 0 ? "" : "%"}}
+            class="battery_info">
+            {{item.battery <= 0 ? "离线" : item.battery}}{{item.battery <= 0 ? "" : "%"}}
           </span>
           <!-- 电池内部的进度条 -->
           <div
             [style.backgroundColor]="item.battery | batteryPipe"
             [style.width.%]="item.battery"
-            class="battery_body"
-            #batteryBody>
+            class="battery_body">
           </div>
           <!-- 电池的头部 -->
           <span
             [style.backgroundColor]="item.battery | batteryPipe"
-            class="battery_header"
-            #batteryHeader>
+            class="battery_header">
           </span>
         </div>
       </div>
