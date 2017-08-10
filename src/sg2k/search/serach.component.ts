@@ -20,7 +20,8 @@ export class SearchComponent implements OnInit {
   @ViewChild('searchBar') searchbar: Searchbar;
 
   constructor(
-    private searchHttp: SearchHttp, public navCtrl: NavController
+    private searchHttp: SearchHttp,
+    public navCtrl: NavController
   ) { }
 
   //初始化获取数据
@@ -37,7 +38,9 @@ export class SearchComponent implements OnInit {
     let val = item ? item.value : '';
     this.searchHttp.params.currentPage =1;
     this.searchHttp.params.q = val;
-    this.searchHttp.queryALLPumpList().subscribe(res => {
+    this.searchHttp
+      .queryALLPumpList()
+      .subscribe(res => {
       this.pumpItems = res.code === 200 ? res.rows : [];
       this.totalPage = res.totalPage;
       setTimeout(() => {
@@ -72,7 +75,9 @@ export class SearchComponent implements OnInit {
   }
   // 上拉的时候, 发起的数据请求
   queryPumpItemsForScroll(): any {
-    this.searchHttp.queryALLPumpList().subscribe(res => {
+    this.searchHttp
+      .queryALLPumpList()
+      .subscribe(res => {
       this.scrollPumpItems = res.code === 200 ? res.rows : [];
     });
   }

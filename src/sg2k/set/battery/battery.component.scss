@@ -4,11 +4,60 @@
 */
 page-battery {
   ion-content {
+    // 列表 item
     ion-item {
       ion-label {
+        // item 的第一行
         div:nth-of-type(1) {
           margin-bottom: 1rem;
+          // 传感器ID
+          div:nth-of-type(1) {
+
+          }
+          // 电量指示图标
+          div:nth-of-type(2) {
+            font-size: 14px !important;
+            box-sizing: border-box;
+            padding-top: 5px;
+            // 电池的外壳
+            .battery_wrapper {
+              box-sizing: border-box;
+              border: 2px solid #ccc;
+              display: inline-block;
+              width: 40px;
+              height: 24px;
+              padding: 2px;
+              border-radius: 4px;
+              position: relative;
+              // 电池旁边的状态信息
+              .battery_info {
+                content: attr(data-tip);
+                position: absolute;
+                top: 50%;
+                right: -48px;
+                transform: translateY(-50%);
+              }
+              // 电池的头部
+              .battery_header {
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: -6px;
+                width: 6px;
+                height: 12px;
+                background: red;
+                transform: translateY(-50%);
+              }
+              // 电池里面的类进度条内容
+              .battery_body {
+                background-color: red;
+                height: 100%;
+                width: 50%;
+              }
+            }
+          }
         }
+        // item 的第二行
         div:nth-of-type(2) {
           font-size: 1.4rem;
           color: #ccc;

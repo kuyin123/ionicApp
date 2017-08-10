@@ -9,22 +9,75 @@
     </ion-title>
   </ion-navbar>
   <ion-searchbar
-    [navPush]="pushPage"
-    [(ngModel)]="searchVal"
     #searchBar
     debounce="1000"
     placeholder="传感器ID、机泵位号/名称">
   </ion-searchbar>
 </ion-header>
-<ion-content>
-  <ion-item
-    *ngFor="let item of batteryItems">
+<ion-content >
+  <!-- 下拉刷新 refresher -->
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-round-down"
+      pullingText="下拉刷新"
+      refreshingText="加载中">
+    </ion-refresher-content>
+  </ion-refresher>
+  <!-- 数据列表 -->
+  <ion-item *ngFor="let item of batteryItems">
+    <!-- item 的第一行 -->
     <div>
+      <!-- 传感器ID -->
       <div>{{item.sensorId}}</div>
+      <!-- 电量显示 icon -->
+      <div>
+        <!-- 电池外边框 -->
+        <div
+          [style.borderColor]="item.battery | batteryPipe"
+          class="battery_wrapper"
+          #batteryWrapper>
+          <!-- 电池右边的数字信息 -->
+          <span
+            [style.color]="item.battery | batteryPipe"
+            class="battery_info"
+            #batteryInfo>
+            {{item.battery}}{{item.battery === 0 ? "" : "%"}}
+          </span>
+          <!-- 电池内部的进度条 -->
+          <div
+            [style.backgroundColor]="item.battery | batteryPipe"
+            [style.width.%]="item.battery"
+            class="battery_body"
+            #batteryBody>
+          </div>
+          <!-- 电池的头部 -->
+          <span
+            [style.backgroundColor]="item.battery | batteryPipe"
+            class="battery_header"
+            #batteryHeader>
+          </span>
+        </div>
+      </div>
     </div>
+    <!-- item 的第二行 -->
     <div>
+      <!-- 最左边的 icon -->
       <ion-icon name="pin"></ion-icon>
+      <!-- 机泵名称 - 测点位置 -->
       {{item.pumpName}} - {{item.dsName}}
     </div>
   </ion-item>
+  <div
+    *ngIf="ifBottom"
+    style="text-align: center; color: red;">
+    <span>------ 我是有底线的 ------</span>
+  </div>
+  <!-- 上拉加载 -->
+  <ion-infinite-scroll
+    (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="正在加载数据...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

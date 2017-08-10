@@ -1,5 +1,5 @@
 /*
-* 电量统计的http请求 服务
+* 电量统计的数据请求 Service 服务
 * by q1cha0
 * */
 import {Injectable} from "@angular/core"
@@ -8,7 +8,7 @@ import {HttpService} from "../../../providers/HttpService"
 
 @Injectable()
 export class BatteryHttp {
-  params: object = {
+  params = {
     q: null,
     currentPage: 1,
     rows: 15,

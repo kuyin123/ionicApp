@@ -1,5 +1,6 @@
 <!--
   报警的第一个界面: 搜索/下拉框/列表/上拉刷新/下拉加载分页
+  by q1cha0
 -->
 <ion-header>
   <ion-navbar>
@@ -33,7 +34,7 @@
 
 </ion-header>
 <ion-content>
-  <!-- 上拉刷新 refresher -->
+  <!-- 下拉刷新 refresher -->
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-round-down"
@@ -115,7 +116,7 @@
     style="text-align: center; color: red;">
     <span>------ 我是有底线的 ------</span>
   </div>
-  <!-- 下拉刷新 -->
+  <!-- 上拉加载 -->
   <ion-infinite-scroll
     (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content
