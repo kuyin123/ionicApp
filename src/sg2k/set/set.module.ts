@@ -8,6 +8,7 @@ import {SetComponent} from './set.component';
 // 也可建一个BatteryModule在此导入, 替代组件和服务
 import {BatteryComponent} from "./battery/battery.component"
 import {BatteryHttp} from "./battery/battery.http"
+
 import {BatteryPipe} from "./battery/battery.pipe"
 
 @NgModule({

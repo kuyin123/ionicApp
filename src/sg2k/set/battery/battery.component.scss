@@ -9,18 +9,20 @@ page-battery {
       ion-label {
         // item 的第一行
         div:nth-of-type(1) {
-          margin-bottom: 1rem;
+          //margin-bottom: 1rem;
           // 传感器ID
           div:nth-of-type(1) {
-
+            display: inline-block;
           }
           // 电量指示图标
           div:nth-of-type(2) {
             font-size: 14px !important;
             box-sizing: border-box;
-            padding-top: 5px;
+            display: inline-block;
+            margin-left: 15rem;
+            //padding-top: 5px;
             // 电池的外壳
-            .battery_wrapper {
+            #battery_wrapper {
               box-sizing: border-box;
               border: 2px solid #ccc;
               display: inline-block;
