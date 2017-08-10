@@ -12,10 +12,8 @@ ion-datetime {
 
 .type {
   span {
-    display: inline-block;
-    //border-radius: 100%;
-    position: relative;
-    //overflow: hidden;
+    display: inline-block; //border-radius: 100%;
+    position: relative; //overflow: hidden;
     &:after {
       content: '';
       position: absolute;
@@ -27,8 +25,8 @@ ion-datetime {
       border-radius: 100%;
     }
   }
-  $typeColor:(good:yellow, normal:green, accept:blue, disallow:red, outline:gray);
 
+  $typeColor:(good:yellow, normal:green, accept:blue, disallow:red, outline:gray);
   @each $type,
   $color in $typeColor {
     .#{$type} {
