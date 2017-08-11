@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
-import {NavController} from "ionic-angular";
+import {App} from "ionic-angular"
 
-import {AlarmHttp} from "../alarm/alarm.http"
 import {BatteryComponent} from "./battery/battery.component"
 
 @Component({
@@ -11,11 +10,12 @@ import {BatteryComponent} from "./battery/battery.component"
 export class SetComponent {
   pushPage: any; // 通过属性绑定导航
 
-  constructor(
-    public alarmHttp: AlarmHttp,
-    public navCtrl: NavController
-  ) {
-    this.pushPage = BatteryComponent;
+  constructor(public appCtrl: App) {
+
+  }
+
+  public gotoBattery(): void {
+    this.appCtrl.getRootNav().push(BatteryComponent);
   }
 
 }
