@@ -5,9 +5,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
   <section>
     <ion-segment [(ngModel)]="pet" (ionChange)="segmentChanged($event)">
       <ion-segment-button value="0">
@@ -58,13 +58,18 @@
         </p>
       </div>
     </div>
-    <echarts-ng2 #pieCharts [option]="pieData"></echarts-ng2>
-    <ion-grid>
-      <ion-row *ngFor="let pump of showData">
-        <ion-col col-4 class="type"><span [class]="pump.type | getType">&#12288;</span><span>&nbsp;{{pump.name}}</span></ion-col>
-        <ion-col col-4 text-center><span>{{pump.value}}</span></ion-col>
-        <ion-col col-4 text-center>{{pump.proportion}}</ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-content #showDataBox>
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      <echarts-ng2 #pieCharts [option]="pieData" (onAfterInit)="onAfterInit($event)"></echarts-ng2>
+      <ion-grid>
+        <ion-row *ngFor="let pump of showData" (click)="gotoMachineDetail(pump)">
+          <ion-col col-4 class="type"><span [class]="pump.type | getType">&#12288;</span><span>&nbsp;{{pump.name}}</span></ion-col>
+          <ion-col col-4 text-center><span>{{pump.value}}</span></ion-col>
+          <ion-col col-4 text-center>{{pump.proportion}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
   </section>
 </ion-content>

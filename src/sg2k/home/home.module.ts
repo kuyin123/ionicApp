@@ -6,6 +6,8 @@ import { HomeHttp } from './home.http'
 
 import {GetTypePipe} from './get-type.pipe'
 
+//import {AutoFitLayout} from './ngEcharts/auto-fit-layout.directive'
+
 @NgModule({
   imports: [IonicModule,EchartsNg2Module],
   declarations: [HomeComponent,GetTypePipe],

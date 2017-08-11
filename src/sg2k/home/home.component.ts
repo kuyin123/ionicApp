@@ -1,15 +1,25 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+
+import { App, ViewController } from 'ionic-angular';
+
 import { EChartOption, ECharts } from 'echarts-ng2';
 import { HomeHttp } from './home.http'
 import { Option } from './option'
 import { dateHandler } from 'sgck'
+
+import { SearchComponent } from './../search/serach.component';
 
 @Component({
   selector: 'home-cmp',
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  constructor(private homeHttp: HomeHttp) {}
+
+  @ViewChild('pieCharts') pieCharts: ECharts;
+
+  constructor(private homeHttp: HomeHttp,
+    public viewCtrl: ViewController,
+    public appCtrl: App) {}
 
   timesel = "1" //选择时间类型：前一天，前一周，前一月，前一年，自定义。默认前一天
   curDate = dateHandler.dateFormat(new Date(), 'yyyy-MM-dd'); //当前时间
@@ -123,9 +133,24 @@ export class HomeComponent implements OnInit {
     }, 2000);
   }
 
-
+  //页面初始化
   ngOnInit() {
     this.countRTPumpStatus(); //初始化请求实时机泵
   };
+
+  //图表初始化后
+  onAfterInit(event: any) {
+    this.pieCharts.on('click', (pumps: Object) => {
+      console.log(pumps)
+      this.gotoMachineDetail(pumps["data"])
+    });
+  }
+
+  //根据id跳转到机泵详情
+  gotoMachineDetail(pump: object): void {
+    if (pump["type"] == -1) return
+    //console.log(pump["value"])
+    this.appCtrl.getRootNav().push(SearchComponent);
+  }
 
 }
