@@ -3,7 +3,7 @@
 * by q1cha0
 * */
 import {Component, OnInit} from '@angular/core'
-import {NavController} from "ionic-angular"
+import {NavController, App} from "ionic-angular"
 
 import {AlarmHttp} from './alarm.http'
 import {SearchComponent} from "../search/serach.component"
@@ -22,8 +22,9 @@ export class AlarmComponent implements OnInit {
   pushPage: any; // 通过属性绑定导航
 
   constructor(public alarmHttp: AlarmHttp,
-              public navCtrl: NavController) {
-    this.pushPage = SearchComponent;
+              public navCtrl: NavController,
+              public appCtrl: App) {
+    // this.pushPage = SearchComponent;
   }
 
   ngOnInit() {
@@ -33,6 +34,9 @@ export class AlarmComponent implements OnInit {
   // 点击输入框跳转到搜索页面的另一种方法
   openSearchPage() {
     this.navCtrl.push(SearchComponent);
+  }
+  public gotoSearch() {
+    this.appCtrl.getRootNav().push(SearchComponent);
   }
 
   // select框有变更时, 重新请求数据
