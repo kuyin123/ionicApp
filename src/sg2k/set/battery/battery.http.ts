@@ -16,13 +16,12 @@ export class BatteryHttp {
     orderbyField: '',
   }
   batteryListURL: string = 'sg2k/LogShow /batteryStatus.do';
-  constructor(
-    public httpService: HttpService,
-  ) {
+
+  constructor(public httpService: HttpService) {
 
   }
 
-  queryBatteryList() {
+  public queryBatteryList() {
     return this.httpService
       .post(
         this.batteryListURL,

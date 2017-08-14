@@ -12,7 +12,7 @@
       <ion-col col-9>
         <!-- 搜索框 -->
         <ion-searchbar
-          [navPush]="pushPage"
+          (click)="gotoSearch()"
           #searchBar
           debounce="1000"
           placeholder="机泵位号 / 名称">

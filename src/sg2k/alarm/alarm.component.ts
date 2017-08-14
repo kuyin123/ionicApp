@@ -3,7 +3,7 @@
 * by q1cha0
 * */
 import {Component, OnInit} from '@angular/core'
-import {NavController} from "ionic-angular"
+import {NavController, App} from "ionic-angular"
 
 import {AlarmHttp} from './alarm.http'
 import {SearchComponent} from "../search/serach.component"
@@ -18,14 +18,13 @@ export class AlarmComponent implements OnInit {
   scrollAlarmItems: Array<any> = []; // 下拉刷新时被实时替换的数据
   curPage: number = 1; // 记录当前页码
   totalPage: number = 0; // 总页数
-  ifBottom:boolean = false; // 当前页是否是最后一页
+  ifBottom: boolean = false; // 当前页是否是最后一页
   pushPage: any; // 通过属性绑定导航
 
-  constructor(
-    public alarmHttp: AlarmHttp,
-    public navCtrl: NavController
-  ) {
-    this.pushPage = SearchComponent;
+  constructor(public alarmHttp: AlarmHttp,
+              public navCtrl: NavController,
+              public appCtrl: App) {
+    // this.pushPage = SearchComponent;
   }
 
   ngOnInit() {
@@ -36,9 +35,12 @@ export class AlarmComponent implements OnInit {
   openSearchPage() {
     this.navCtrl.push(SearchComponent);
   }
+  public gotoSearch() {
+    this.appCtrl.getRootNav().push(SearchComponent);
+  }
 
   // select框有变更时, 重新请求数据
-  onSelectChange(selectedValue: any): void {
+  public onSelectChange(selectedValue: any): void {
     this.curPage = 1;
     this.alarmHttp.params.currentPage = this.curPage;
     this.alarmHttp.params.status = selectedValue;
@@ -46,7 +48,7 @@ export class AlarmComponent implements OnInit {
   }
 
   // 上拉加载
-  doInfinite(infiniteScroll) {
+  public doInfinite(infiniteScroll) {
     // 页码超过总页数, 直接跳出方法
     if (this.curPage >= this.totalPage) {
       infiniteScroll.complete();
@@ -68,7 +70,7 @@ export class AlarmComponent implements OnInit {
   }
 
   // 下拉刷新
-  doRefresh(refresher) {
+  public doRefresh(refresher) {
     // 将当前页固定至第一页
     this.curPage = 1;
     this.alarmHttp.params.currentPage = this.curPage;
@@ -79,7 +81,7 @@ export class AlarmComponent implements OnInit {
   }
 
   // 查询机泵报警数据函数
-  queryPumpAlarmList(): any {
+  private queryPumpAlarmList(): any {
     this.ifBottom = false;
     this.alarmHttp
       .queryPumpAlarmList()
@@ -91,7 +93,7 @@ export class AlarmComponent implements OnInit {
   }
 
   // 上拉的时候, 发起的数据请求
-  queryPumpAlarmListForScroll(): any {
+  private queryPumpAlarmListForScroll(): any {
     this.ifBottom = false;
     this.alarmHttp
       .queryPumpAlarmList()
