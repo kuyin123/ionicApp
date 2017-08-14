@@ -9,12 +9,13 @@
     </ion-title>
   </ion-navbar>
   <ion-searchbar
+    (click)="gotoSearch()"
     #searchBar
     debounce="1000"
     placeholder="传感器ID、机泵位号/名称">
   </ion-searchbar>
 </ion-header>
-<ion-content >
+<ion-content>
   <!-- 下拉刷新 refresher -->
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content

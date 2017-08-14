@@ -10,12 +10,27 @@ import {SetComponent} from './set.component'
 import {BatteryComponent} from "./battery/battery.component"
 import {BatteryHttp} from "./battery/battery.http"
 import {BatteryPipe} from "./battery/battery.pipe"
+// 机泵数据列表
+import {PumpDataListComponent} from "./pump-data-list/pump-data-list.component"
+import {PumpDataListHttp} from "./pump-data-list/pump-data-list.http"
 
 @NgModule({
   imports: [IonicModule],
-  declarations: [SetComponent, BatteryComponent, BatteryPipe],
-  entryComponents: [SetComponent, BatteryComponent],
-  providers: [BatteryHttp],
+  declarations: [
+    SetComponent,
+    BatteryComponent,
+    BatteryPipe,
+    PumpDataListComponent
+  ],
+  entryComponents: [
+    SetComponent,
+    BatteryComponent,
+    PumpDataListComponent
+  ],
+  providers: [
+    BatteryHttp,
+    PumpDataListHttp
+  ],
   exports: [IonicModule]
 })
 export class SetModule {
