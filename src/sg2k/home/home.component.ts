@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit,AfterViewInit } from '@angular/core';
 
 import { App, ViewController } from 'ionic-angular';
 
@@ -17,9 +17,11 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('pieCharts') pieCharts: ECharts;
 
-  constructor(private homeHttp: HomeHttp,
+  constructor(
+    private homeHttp: HomeHttp,
     public viewCtrl: ViewController,
-    public appCtrl: App) {}
+    public appCtrl: App,
+    private elementRef: ElementRef) { }
 
   timesel = "1" //选择时间类型：前一天，前一周，前一月，前一年，自定义。默认前一天
   curDate = dateHandler.dateFormat(new Date(), 'yyyy-MM-dd'); //当前时间
@@ -39,6 +41,12 @@ export class HomeComponent implements OnInit {
   get title(): string {
     return this.pet == '0' ? '实时机泵状态统计' : '历史机泵状态变化统计'
   }
+  ngAfterViewInit(){
+    
+  }
+  /* ionViewDidLoad(){
+    
+  } */
   /*
    * 实时机泵统计
    * */
@@ -144,8 +152,11 @@ export class HomeComponent implements OnInit {
       console.log(pumps)
       this.gotoMachineDetail(pumps["data"])
     });
+    setTimeout(()=>{
+      this.elementRef.nativeElement.querySelector('#hehe').style.height = '100%';
+    },1000)
+    
   }
-
   //根据id跳转到机泵详情
   gotoMachineDetail(pump: object): void {
     if (pump["type"] == -1) return
