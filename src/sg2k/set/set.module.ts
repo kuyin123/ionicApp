@@ -6,37 +6,41 @@ import {NgModule} from '@angular/core'
 import {IonicModule} from 'ionic-angular'
 
 import {SetComponent} from './set.component'
-// 也可建一个BatteryModule在此导入, 替代组件和服务
-import {BatteryComponent} from "./battery/battery.component"
-import {BatteryHttp} from "./battery/battery.http"
-import {BatteryPipe} from "./battery/battery.pipe"
+import {BatteryModule} from "./battery/battery.module"
+import {SensorSettingsComponent} from "./sensor-settings/sensor-settings.component"
+
 // 机泵数据列表
 import {PumpDataListComponent} from "./pump-data-list/pump-data-list.component"
 import {PumpDataListHttp} from "./pump-data-list/pump-data-list.http"
+import {SensorSettingsModule} from "./sensor-settings/sensor-settings.module";
 // 传感器设置
-import {SensorSettingsComponent} from "./sensor-settings/sensor-settings.component"
-import {SensorSettingsHttp} from "./sensor-settings/sensor-settings.http"
+// import {SensorSettingsComponent} from "./sensor-settings/sensor-settings.component"
+// import {SensorSettingsHttp} from "./sensor-settings/sensor-settings.http"
 // 传感器设置点击后的详情
 
 @NgModule({
-  imports: [IonicModule],
+  imports: [
+    IonicModule,
+    BatteryModule,
+    SensorSettingsModule
+  ],
   declarations: [
     SetComponent,
-    BatteryComponent,
-    BatteryPipe,
+    // BatteryComponent,
+    // BatteryPipe,
     PumpDataListComponent,
-    SensorSettingsComponent
+    // SensorSettingsComponent
   ],
   entryComponents: [
     SetComponent,
-    BatteryComponent,
+    // BatteryComponent,
     PumpDataListComponent,
-    SensorSettingsComponent
+    // SensorSettingsComponent
   ],
   providers: [
-    BatteryHttp,
+    // BatteryHttp,
     PumpDataListHttp,
-    SensorSettingsHttp
+    // SensorSettingsHttp
   ],
   exports: [IonicModule]
 })
