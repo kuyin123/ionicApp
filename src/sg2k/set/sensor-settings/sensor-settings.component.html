@@ -15,13 +15,20 @@
   </ion-searchbar>
 </ion-header>
 <ion-content>
-  <h1>机泵数据列表页面</h1>
   <ion-list no-lines>
     <button
       ion-item
-      *ngFor="let item of items"
-      (click)="itemSelected(item)">
-      {{ item }}
+      *ngFor="let item of sensorSettingsItems"
+      (click)="gotoDetails(item)">
+      <p
+        [style.color]="item.status === 1 ? '#000' : 'red'">
+        {{item.sensorId}}
+      </p>
+      <div>
+        <ion-icon name="pin"></ion-icon>
+        {{item.pumpName}} {{!(item.name) ? "" : "--"}} {{item.name}}
+      </div>
+
     </button>
   </ion-list>
 </ion-content>

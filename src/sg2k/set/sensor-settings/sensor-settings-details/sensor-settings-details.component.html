@@ -1,0 +1,28 @@
+<!--
+  点击传感器设置后的详情页面
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      详情
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <i>传感器</i>
+    <span>{{item.sensorId}}</span>
+  </ion-item>
+  <ion-item>
+    <i>机泵位号/名称</i>
+    <span>{{item.pumpName}} {{!(item.name) ? "" : "--"}} {{item.name}}</span>
+  </ion-item>
+  <ion-item>
+    <i>安装角度</i>
+    <span>{{item.angle}}°</span>
+  </ion-item>
+  <ion-item>
+    <i>温度</i>
+    <span>{{item.temperatureAlarm}}℃</span>
+  </ion-item>
+</ion-content>

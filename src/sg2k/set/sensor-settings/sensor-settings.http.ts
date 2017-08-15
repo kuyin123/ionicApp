@@ -14,7 +14,7 @@ export class SensorSettingsHttp {
     nopage: 0,
     conditions: 1,
   }
-  sensorSettingsListURL: string = 'sg2k/';
+  sensorSettingsListURL: string = 'sg2k/Set/query.do';
 
   constructor(public httpService: HttpService) {
 

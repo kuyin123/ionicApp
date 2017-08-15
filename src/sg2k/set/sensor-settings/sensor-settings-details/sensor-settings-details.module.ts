@@ -6,13 +6,13 @@ import {NgModule} from "@angular/core"
 import {IonicModule} from "ionic-angular"
 
 import {SensorSettingsDetailsComponent} from "./sensor-settings-details.component"
-import {SensorSettingsDetailsHttp} from "./sensor-settings-details.http"
+// import {SensorSettingsDetailsHttp} from "./sensor-settings-details.http"
 
 @NgModule({
   imports: [IonicModule],
   declarations: [SensorSettingsDetailsComponent],
   entryComponents: [SensorSettingsDetailsComponent],
-  providers: [SensorSettingsDetailsHttp],
+  providers: [],
   exports: [IonicModule]
 })
 export class SensorSettingsDetailsModule {
