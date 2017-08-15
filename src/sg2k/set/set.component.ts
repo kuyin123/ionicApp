@@ -3,6 +3,7 @@ import {App} from "ionic-angular"
 
 import {BatteryComponent} from "./battery/battery.component"
 import {PumpDataListComponent} from "./pump-data-list/pump-data-list.component"
+import {SensorSettingsComponent} from "./sensor-settings/sensor-settings.component"
 
 @Component({
   selector: 'page-set',
@@ -21,6 +22,10 @@ export class SetComponent {
 
   public gotoPumpDataList(): void {
     this.appCtrl.getRootNav().push(PumpDataListComponent);
+  }
+
+  public gotoSensorSettings(): void {
+    this.appCtrl.getRootNav().push(SensorSettingsComponent);
   }
 
 }

@@ -13,6 +13,10 @@ import {BatteryPipe} from "./battery/battery.pipe"
 // 机泵数据列表
 import {PumpDataListComponent} from "./pump-data-list/pump-data-list.component"
 import {PumpDataListHttp} from "./pump-data-list/pump-data-list.http"
+// 传感器设置
+import {SensorSettingsComponent} from "./sensor-settings/sensor-settings.component"
+import {SensorSettingsHttp} from "./sensor-settings/sensor-settings.http"
+// 传感器设置点击后的详情
 
 @NgModule({
   imports: [IonicModule],
@@ -20,16 +24,19 @@ import {PumpDataListHttp} from "./pump-data-list/pump-data-list.http"
     SetComponent,
     BatteryComponent,
     BatteryPipe,
-    PumpDataListComponent
+    PumpDataListComponent,
+    SensorSettingsComponent
   ],
   entryComponents: [
     SetComponent,
     BatteryComponent,
-    PumpDataListComponent
+    PumpDataListComponent,
+    SensorSettingsComponent
   ],
   providers: [
     BatteryHttp,
-    PumpDataListHttp
+    PumpDataListHttp,
+    SensorSettingsHttp
   ],
   exports: [IonicModule]
 })

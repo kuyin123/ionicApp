@@ -1,21 +1,20 @@
 <!--
-  机泵数据列表页面
-  by q1cha0
-  测试---应该是在点击饼图的时候进入页面
+  点击传感器设置后的详情页面
 -->
 <ion-header>
   <ion-navbar>
     <ion-title>
-      机泵数据列表
+      详情
     </ion-title>
   </ion-navbar>
   <ion-searchbar
     (click)="gotoSearch()"
     #searchBar
     debounce="1000"
-    placeholder="机泵名称 / 位号">
+    placeholder="传感器ID、机泵名称 / 位号">
   </ion-searchbar>
 </ion-header>
 <ion-content>
-  <h1>测试-机泵数据列表页面-测试</h1>
+  <h1
+    (click)="gotoDetails()">机泵数据列表页面</h1>
 </ion-content>
