@@ -7,7 +7,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
+    <ion-item
+      (click)="gotoSensorSettings()">
       <ion-avatar item-start>
         <img src="../../assets/icon/favicon.ico">
       </ion-avatar>
@@ -15,7 +16,8 @@
       <div class="sub-title">配置、更换、删除</div>
       <ion-icon name='arrow-forward'></ion-icon>
     </ion-item>
-    <ion-item>
+    <ion-item
+      (click)="gotoPumpDataList()">
       <ion-avatar item-start>
         <img src="../../assets/icon/favicon.ico">
       </ion-avatar>

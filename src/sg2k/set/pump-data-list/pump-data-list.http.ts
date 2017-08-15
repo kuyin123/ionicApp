@@ -1,5 +1,5 @@
 /*
-* 电量统计的数据请求 Service 服务
+* 机泵数据列表的数据请求 服务
 * by q1cha0
 * */
 import {Injectable} from "@angular/core"
@@ -7,24 +7,24 @@ import {Response} from "@angular/http"
 import {HttpService} from "../../../providers/HttpService"
 
 @Injectable()
-export class BatteryHttp {
+export class PumpDataListHttp {
   params = {
     q: null,
     currentPage: 1,
     rows: 15,
     nopage: 0,
-    orderbyField: '',
+    conditions: 1,
   }
-  batteryListURL: string = 'sg2k/LogShow /batteryStatus.do';
+  pumpDataListURL: string = 'sg2k/Show/queryLastData.do';
 
   constructor(public httpService: HttpService) {
 
   }
 
-  public queryBatteryList(): any {
+  public queryPumpDataList(): any {
     return this.httpService
       .post(
-        this.batteryListURL,
+        this.pumpDataListURL,
         this.params
       ).map((res: Response) => res.json());
   };

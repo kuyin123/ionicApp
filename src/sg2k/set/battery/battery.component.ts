@@ -3,8 +3,10 @@
 * by q1cha0
 * */
 import {Component, OnInit} from "@angular/core"
+import {App} from "ionic-angular"
 
 import {BatteryHttp} from "./battery.http"
+import {SearchComponent} from "../../search/serach.component"
 
 @Component({
   selector: 'page-battery',
@@ -17,13 +19,19 @@ export class BatteryComponent implements OnInit {
   totalPage: number = 0; // 总页数
   ifBottom: boolean = false; // 当前页是否是最后一页
 
-  constructor(public batteryHttp: BatteryHttp) {
+  constructor(public batteryHttp: BatteryHttp,
+              public appCtrl: App) {
     // debugger
   }
 
   // 组件初始化执行的方法
   ngOnInit() {
     this.queryBatteryList();
+  }
+
+  // 点击搜索框跳转到搜索页面
+  public gotoSearch(): void {
+    this.appCtrl.getRootNav().push(SearchComponent);
   }
 
   // 上拉加载

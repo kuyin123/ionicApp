@@ -1,0 +1,20 @@
+<!--
+  点击传感器设置后的详情页面
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      详情
+    </ion-title>
+  </ion-navbar>
+  <ion-searchbar
+    (click)="gotoSearch()"
+    #searchBar
+    debounce="1000"
+    placeholder="传感器ID、机泵名称 / 位号">
+  </ion-searchbar>
+</ion-header>
+<ion-content>
+  <h1
+    (click)="gotoDetails()">机泵数据列表页面</h1>
+</ion-content>
