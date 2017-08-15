@@ -28,7 +28,7 @@ export class GetTypePipe implements PipeTransform {
         reType = 'disallow';//不允许
         break;
       default:
-        reType = 'outline';//不在线
+        reType = 'offline';//不在线
         break;
     }
     return reType;
