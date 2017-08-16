@@ -25,8 +25,7 @@ ion-datetime {
       border-radius: 100%;
     }
   }
-
-  $typeColor:(good:yellow, normal:green, accept:blue, disallow:red, outline:gray);
+  $typeColor:(good:yellow, normal:green, accept:blue, disallow:red, offline:gray);
   @each $type,
   $color in $typeColor {
     .#{$type} {

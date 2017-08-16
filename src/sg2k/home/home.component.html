@@ -19,7 +19,9 @@
     </ion-segment>
   </section>
   <section>
+    <!-- 标题显示 -->
     <h3 class="title" text-center margin-vertical>{{title}}</h3>
+    <!-- 时间筛选 -->
     <div *ngIf="pet == 1">
       <ion-segment [(ngModel)]="timesel" (ionChange)="userSelectDate($event)">
         <ion-segment-button value="1">
@@ -58,22 +60,23 @@
         </p>
       </div>
     </div>
-    <!-- <div #showDataBox>
-      hehehehehehehehe
-    </div> -->
-    <ion-content id="hehe">
+    <!-- 下拉刷新 -->
+    <ion-content>
       <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
-      <echarts-ng2 #pieCharts [option]="pieData" (onAfterInit)="onAfterInit($event)"></echarts-ng2>
-      <ion-grid>
-        <ion-row *ngFor="let pump of showData" (click)="gotoMachineDetail(pump)">
-          <ion-col col-4 class="type"><span [class]="pump.type | getType">&#12288;</span><span>&nbsp;{{pump.name}}</span></ion-col>
-          <ion-col col-4 text-center><span>{{pump.value}}</span></ion-col>
-          <ion-col col-4 text-center>{{pump.proportion}}</ion-col>
-        </ion-row>
-      </ion-grid>
     </ion-content>
+    <!-- 显示饼图 -->
+    <echarts-ng2 #pieCharts [option]="pieData" (onAfterInit)="onAfterChartInit($event)"></echarts-ng2>
+    <!-- 底部数据显示 -->
+    <ion-grid>
+      <ion-row *ngFor="let pump of showData" (click)="gotoMachineDetail(pump)">
+        <ion-col col-4 class="type"><span [class]="pump.type | getType">&#12288;</span><span>&nbsp;{{pump.name}}</span></ion-col>
+        <ion-col col-4 text-center><span>{{pump.value}}</span></ion-col>
+        <ion-col col-4 text-center>{{pump.proportion}}</ion-col>
+      </ion-row>
+    </ion-grid>
+
 
 
 

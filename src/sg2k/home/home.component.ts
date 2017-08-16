@@ -1,4 +1,9 @@
-import { Component, ElementRef, ViewChild, OnInit,AfterViewInit } from '@angular/core';
+/**
+ * 概览页
+ * by heyongbo 2017 08.15
+ */
+
+ import { Component, ElementRef, ViewChild,AfterViewInit } from '@angular/core';
 
 import { App, ViewController } from 'ionic-angular';
 
@@ -13,7 +18,7 @@ import { SearchComponent } from './../search/serach.component';
   selector: 'home-cmp',
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   @ViewChild('pieCharts') pieCharts: ECharts;
 
@@ -44,9 +49,6 @@ export class HomeComponent implements OnInit {
   ngAfterViewInit(){
     
   }
-  /* ionViewDidLoad(){
-    
-  } */
   /*
    * 实时机泵统计
    * */
@@ -147,14 +149,11 @@ export class HomeComponent implements OnInit {
   };
 
   //图表初始化后
-  onAfterInit(event: any) {
+  onAfterChartInit(event: any) {
     this.pieCharts.on('click', (pumps: Object) => {
       console.log(pumps)
       this.gotoMachineDetail(pumps["data"])
     });
-    setTimeout(()=>{
-      this.elementRef.nativeElement.querySelector('#hehe').style.height = '100%';
-    },1000)
     
   }
   //根据id跳转到机泵详情
