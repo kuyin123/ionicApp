@@ -45,7 +45,6 @@ export class SensorSettingsComponent implements OnInit {
       .querySensorSettingsList()
       .subscribe(res => {
         this.sensorSettingsItems = res.code === 200 ? res.rows : [];
-
       });
   }
 

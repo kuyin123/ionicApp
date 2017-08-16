@@ -9,13 +9,40 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-5 style='color: #ccc'>传感器</ion-col>
+      <ion-col col-7>{{item.sensorId}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5>机泵位号 / 名称</ion-col>
+      <ion-col col-7></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5>安装位置</ion-col>
+      <ion-col col-7></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5>安装角度</ion-col>
+      <ion-col col-7></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5>温度报警</ion-col>
+      <ion-col col-7></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5>振动报警级别</ion-col>
+      <ion-col col-7></ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-item>
     <i>传感器</i>
     <span>{{item.sensorId}}</span>
   </ion-item>
   <ion-item>
     <i>机泵位号/名称</i>
-    <span>{{item.pumpName}} {{!(item.name) ? "" : "--"}} {{item.name}}</span>
+    <span>{{item.pumpName}}</span>
   </ion-item>
   <ion-item>
     <i>安装角度</i>
