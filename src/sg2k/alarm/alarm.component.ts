@@ -80,7 +80,7 @@ export class AlarmComponent implements OnInit {
     }, 800);
   }
 
-  // 查询机泵报警数据函数
+  // 查询机泵报警数据方法
   private queryPumpAlarmList(): any {
     this.ifBottom = false;
     this.alarmHttp
