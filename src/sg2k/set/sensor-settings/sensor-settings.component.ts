@@ -8,6 +8,7 @@ import {App} from "ionic-angular"
 import {SensorSettingsHttp} from "./sensor-settings.http";
 import {SensorSettingsDetailsComponent} from "./sensor-settings-details/sensor-settings-details.component"
 import {PassDataService} from "./sensor-settings.service"
+import {SensorSettingsConfigComponent} from "./sensor-settings-config/sensor-settings-config.component";
 
 @Component({
   selector: 'sensor-settings',
@@ -30,7 +31,11 @@ export class SensorSettingsComponent implements OnInit {
 
   // 点击跳转详情
   public gotoDetails(item) {
-    this.appCtrl.getRootNav().push(SensorSettingsDetailsComponent);
+    if (item.pumpId) { // 如果是在线和离线, 都进入详情页
+      this.appCtrl.getRootNav().push(SensorSettingsDetailsComponent);
+    } else { // 如果没有传感器还未配置, 则进入配置页
+      this.appCtrl.getRootNav().push(SensorSettingsConfigComponent);
+    }
     this.passDataService.sensorItem = item;
   }
 
