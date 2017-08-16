@@ -1,6 +1,15 @@
 /*
-  传感器设置点击后的详情
+  传感器设置详情样式
+  by q1cha0
 */
 sensor-settings-details {
-
+  ion-content {
+    ion-grid ion-row {
+      ion-col:nth-of-type(1) {
+        div {
+          color: #ccc;
+        }
+      }
+    }
+  }
 }

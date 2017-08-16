@@ -10,6 +10,8 @@ import {SensorSettingsHttp} from "./sensor-settings.http"
 
 import {PassDataService} from "./sensor-settings.service"
 
+import {SensorSettingsDetailsPipe} from "./sensor-settings-details/sensor-settings-details.pipe";
+
 /* by q1cha0 */
 import {SensorSettingsComponent} from "./sensor-settings.component"
 import {SensorSettingsDetailsComponent} from "./sensor-settings-details/sensor-settings-details.component"
@@ -21,7 +23,8 @@ import {SensorSettingsConfigComponent} from "./sensor-settings-config/sensor-set
   declarations: [
     SensorSettingsComponent,
     SensorSettingsDetailsComponent,
-    SensorSettingsConfigComponent
+    SensorSettingsConfigComponent,
+    SensorSettingsDetailsPipe
   ],
   entryComponents: [
     SensorSettingsComponent,

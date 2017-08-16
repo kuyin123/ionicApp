@@ -11,45 +11,63 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col col-5 style='color: #ccc'>传感器</ion-col>
-      <ion-col col-7>{{item.sensorId}}</ion-col>
+      <ion-col col-5>
+        <div>传感器</div>
+      </ion-col>
+      <ion-col col-7>
+        <span>{{item.sensorId}}</span>
+        <ion-badge>
+          {{item.status === 1 ? "在线" : "离线"}}
+        </ion-badge>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-5>机泵位号 / 名称</ion-col>
-      <ion-col col-7></ion-col>
+      <ion-col col-5>
+        <div>机泵位号 / 名称</div>
+      </ion-col>
+      <ion-col col-7>
+        <div>{{item.pumpName}}</div>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-5>安装位置</ion-col>
-      <ion-col col-7></ion-col>
+      <ion-col col-5>
+        <div>安装位置</div>
+      </ion-col>
+      <ion-col col-7>
+        <div>{{item.name}}</div>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-5>安装角度</ion-col>
-      <ion-col col-7></ion-col>
+      <ion-col col-5>
+        <div>安装角度</div>
+      </ion-col>
+      <ion-col col-7>
+        <div>{{item.angle}}°</div>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-5>温度报警</ion-col>
-      <ion-col col-7></ion-col>
+      <ion-col col-5>
+        <div>温度报警</div>
+      </ion-col>
+      <ion-col col-7>
+        <div>{{item.temperatureAlarm}}℃</div>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-5>振动报警级别</ion-col>
-      <ion-col col-7></ion-col>
+      <ion-col col-5>
+        <div>振动报警级别</div>
+      </ion-col>
+      <ion-col col-7>
+        <div>
+          {{item.lv | senorSettingsDetailsPipe}}类机泵
+          <br>
+          门限一 {{item.vibAlarmConfig.split(",")[0]}}
+          <br>
+          门限二 {{item.vibAlarmConfig.split(",")[1]}}
+          <br>
+          门限三 {{item.vibAlarmConfig.split(",")[2]}}
+        </div>
+      </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-item>
-    <i>传感器</i>
-    <span>{{item.sensorId}}</span>
-  </ion-item>
-  <ion-item>
-    <i>机泵位号/名称</i>
-    <span>{{item.pumpName}}</span>
-  </ion-item>
-  <ion-item>
-    <i>安装角度</i>
-    <span>{{item.angle}}°</span>
-  </ion-item>
-  <ion-item>
-    <i>温度</i>
-    <span>{{item.temperatureAlarm}}℃</span>
-  </ion-item>
 </ion-content>
