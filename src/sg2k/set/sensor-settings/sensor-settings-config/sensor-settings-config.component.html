@@ -1,0 +1,51 @@
+<!--
+  扫一扫进入传感器配置页
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      配置
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+      <ion-list-header text-center>
+          已经添加到传感器列表
+        </ion-list-header>
+    <ion-item>
+      <ion-label>传感器</ion-label>
+      <ion-input type="text" text-right [(ngModel)]="sensorInfo.id"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>机泵名称/位号</ion-label>
+      <ion-input type="text" placeholder="请填写" text-right></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>安装位置</ion-label>
+      <ion-input type="text" placeholder="请填写" text-right></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>安装角度</ion-label>
+      <ion-input type="text" text-right></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>温度报警</ion-label>
+      <ion-input type="number" text-right></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>震动报警级别</ion-label>
+      <ion-input type="number" text-right></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-grid>
+    <ion-row text-center responsive-sm>
+      <ion-col><button ion-button>继续扫码</button></ion-col>
+      <ion-col><button ion-button color="light">&#12288;应用&#12288;</button></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

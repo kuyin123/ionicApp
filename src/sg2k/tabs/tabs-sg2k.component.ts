@@ -1,4 +1,4 @@
-import { Component,ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { HomeComponent } from '../home/home.component';
@@ -7,12 +7,14 @@ import { SetComponent } from '../set/set.component';
 import { SearchComponent } from './../search/serach.component';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
+import { SensorSettingsConfigComponent } from '../set/sensor-settings/sensor-settings-config/sensor-settings-config.component'
+
 @Component({
   selector: 'tabs-sg2k',
   templateUrl: './tabs-sg2k.component.html'
 })
 export class TabsSg2kComponent {
- // @ViewChild('myTabs') tabRef: Tabs;
+  // @ViewChild('myTabs') tabRef: Tabs;
 
   tab1Root = HomeComponent;
   tab2Root = AlarmComponent;
@@ -20,17 +22,17 @@ export class TabsSg2kComponent {
   mySelectedIndex = 0;
 
   constructor(public navCtrl: NavController,
-              private barcodeScanner: BarcodeScanner) {
+    private barcodeScanner: BarcodeScanner) {
     //this.mySelectedIndex = navParams.data.tabIndex || 2;
   }
 
   ionViewDidEnter() {
     //this.tabRef.select(0);
-   // let navParms = this.navparams;
+    // let navParms = this.navparams;
   }
 
   /*机泵搜索*/
-  onSearch(){
+  onSearch() {
     this.navCtrl.push(SearchComponent);
   }
 
@@ -41,6 +43,10 @@ export class TabsSg2kComponent {
     }, (err) => {
       // An error occurred
     });
+  }
+
+  addSensor() {
+    this.navCtrl.push(SensorSettingsConfigComponent);
   }
 
 }
